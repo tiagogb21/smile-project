@@ -1,0 +1,12 @@
+.table-main-content__container {
+  width: 95vw;
+
+  border: 1px solid rgb(196, 195, 195);
+  border-collapse: collapse;
+
+  color: rgb(119, 118, 118);
+}
+
+.table-main-content__container th {
+  font-size: 13px;
+}
