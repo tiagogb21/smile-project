@@ -1,6 +1,6 @@
 .header-main {
   width: 100vw;
-  height: 36vh;
+  height: 45vh;
 
   padding: 0 15px;
 
@@ -54,12 +54,10 @@
   width: 95%;
   height: 20vh;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 130px);
+  justify-content: space-between;
+  align-items: center;
 
   color: rgb(140, 140, 140)
 }
@@ -86,6 +84,7 @@
 
 .input__box input {
   border: 1px solid rgb(196, 195, 195);
+  padding-left: 10px;
 }
 
 .payment__box {
@@ -97,4 +96,14 @@
 
 .payment__box p {
   margin: 0;
+}
+
+.value-calc__span__box {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-new-schedule {
+  margin-top: 10px;
+  background: rgb(0, 150, 136);
 }

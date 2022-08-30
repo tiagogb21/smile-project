@@ -4,12 +4,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import scheduleLogin from "../reducers/loginReducer";
 import scheduleRegister from "../reducers/registerReducer";
 import scheduleAside from "../reducers/asideReducer";
+import scheduleTable from "../reducers/tableReducer";
 
 export const store = configureStore({
   reducer: {
     login: scheduleLogin,
     register: scheduleRegister,
     aside: scheduleAside,
+    table: scheduleTable,
   },
 });
 
