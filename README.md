@@ -6,8 +6,8 @@
  Nesse caso específico, o projeto foi feito para a área de saúde, mas é possível expândi-lo para outras áreas.
 
 ## Tecnologias:
- Front:
+ <strong>Front</strong>:
  React/Redux/Typescript/Styled-components/Storybook/Axios/Oauth(Google)
 
- Back:
+ <strong>Back</strong>:
  Node/MVC/ORM(Sequelize)/Jwt/Bcript
