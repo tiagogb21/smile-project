@@ -6,8 +6,10 @@ import { useAppDispatch } from '../../../redux/store/store';
 import "./styles.css";
 
 const HeaderMainContent: React.FC = () => {
+  const [requiredFields, setRequiredFields] = useState(false);
+  const [teste, setTeste] = useState(true);
+
   const [dataSchedule, setDataSchedule] = useState({
-    id: 0,
     date: '',
     user: '',
     client: '',
@@ -16,6 +18,21 @@ const HeaderMainContent: React.FC = () => {
   });
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if(dataSchedule.date.length > 0
+      && dataSchedule.user.length > 0
+      && dataSchedule.client.length > 0
+      && dataSchedule.value) {
+        console.log('aaaaaa')
+        setTeste(false);
+        setRequiredFields(false);
+    }
+    console.log(dataSchedule.date.length > 0
+      && dataSchedule.user.length > 0
+      && dataSchedule.client.length > 0
+      && dataSchedule.value)
+  }, [dataSchedule]);
 
   return (
     <header className="header-main">
@@ -37,6 +54,7 @@ const HeaderMainContent: React.FC = () => {
                 client: e.target.value
               }))
             } }
+            required
           />
         </label>
         <label className="input__box" htmlFor="input-value">
@@ -52,6 +70,7 @@ const HeaderMainContent: React.FC = () => {
                 value: e.target.value
               }))
             } }
+            required
           />
         </label>
         <label className="input__box"  htmlFor="">
@@ -65,6 +84,7 @@ const HeaderMainContent: React.FC = () => {
                 date: e.target.value
               }))
             } }
+            required
           />
         </label>
         <article className="payment__box">
@@ -83,13 +103,21 @@ const HeaderMainContent: React.FC = () => {
           </select>
         </article>
       </section>
-      <button
-        className="btn-add-new btn-new-schedule"
-        type="button"
-        onClick={() => dispatch(insertDataInSchedule(dataSchedule))}
-      >
-        Add
-      </button>
+      <article className="btn-new__container">
+        {
+          requiredFields
+          && <p>Todos os campos são obrigatórios</p>
+        }
+        <button
+          className="btn-add-new btn-new-schedule"
+          type="button"
+          onClick={() => {
+            return teste ? setRequiredFields(true) : dispatch(insertDataInSchedule(dataSchedule))
+          } }
+        >
+          Add
+        </button>
+      </article>
     </header>
   );
 };

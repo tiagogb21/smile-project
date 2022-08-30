@@ -1,5 +1,4 @@
 export interface ITable {
-  id: number;
   date: string;
   user: string;
   client: string;

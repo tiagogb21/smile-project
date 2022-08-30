@@ -1,15 +1,16 @@
 import { DataTypes, Model } from "sequelize";
 import db from "./index";
 
-export default class User extends Model {
+export default class Schedule extends Model {
   public id!: number;
-  public email!: string;
-  public password!: string;
-  public role!: string;
-  public username!: string;
+  public createdBy!: string;
+  public value!: string;
+  public status!: string;
+  public created?: Date;
+  public updated?: Date;
 }
 
-User.init(
+Schedule.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -17,27 +18,31 @@ User.init(
       primaryKey: true,
       allowNull: false,
     },
-    username: {
+    createdBy: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    role: {
+    value: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
+    status: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
-      type: DataTypes.STRING,
+    created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updated: {
+      type: DataTypes.DATE,
       allowNull: false,
     },
   },
   {
     sequelize: db,
-    modelName: "users",
+    modelName: "schedule",
     underscored: true,
-    timestamps: false,
+    timestamps: true,
   }
 );

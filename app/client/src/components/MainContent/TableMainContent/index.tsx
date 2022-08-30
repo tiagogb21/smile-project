@@ -22,8 +22,8 @@ const TableMainContent: React.FC = () => {
       <tbody>
         {
           schedule &&
-          schedule?.slice(1).map((item) => (
-            <tr key={ item.id }>
+          schedule?.slice(1).map((item, id) => (
+            <tr key={ id }>
               <td>{ item.date }</td>
               <td>{ item.user }</td>
               <td>{ item.client }</td>

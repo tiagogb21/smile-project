@@ -1,6 +1,6 @@
 .header-main {
   width: 100vw;
-  height: 45vh;
+  height: 51vh;
 
   padding: 0 15px;
 
@@ -101,6 +101,20 @@
 .value-calc__span__box {
   display: flex;
   gap: 15px;
+}
+
+.btn-new__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 10px;
+}
+
+.btn-new__container p {
+  margin: 0;
+  font-size: 10px;
+  color: red;
 }
 
 .btn-new-schedule {
