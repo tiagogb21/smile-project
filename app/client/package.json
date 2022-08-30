@@ -14,14 +14,20 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "babel-eslint": "^10.1.0",
+    "dotenv": "^16.0.1",
     "eslint-config-prettier": "^8.5.0",
+    "fs": "^0.0.1-security",
+    "gapi-script": "^1.2.0",
+    "https-browserify": "~0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-google-login": "^5.2.2",
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
+    "rn-nodeify": "^10.3.0",
     "styled-components": "^5.3.5",
     "typescript": "^4.8.2",
     "web-vitals": "^2.1.4"
@@ -49,6 +55,11 @@
         }
       }
     ]
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   },
   "browserslist": {
     "production": [

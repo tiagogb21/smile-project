@@ -5,21 +5,37 @@ export const Container = styled.section`
   height: 100vh;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background: radial-gradient(#C1F3FA, #8FE8F6, #3FB2C4);
+
+  @media screen and (min-width: 768px) {
+    gap: 20px;
+  }
 `;
 
 export const Form = styled.form`
-  width: 50vw;
-  height: 60vh;
+  width: 100vw;
+  height: 100vh;
 
   border: 1px solid rgb(207, 206, 206);
   border-radius: 6px;
-  padding: 20px 30px;
+  padding: 50px 30px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  background: #ffffff;
+  color: rgb(20, 80, 130);
+  font-weight: bold;
+
+  h1 {
+    text-align: center;
+    margin: 0;
+  }
 
   .label-info-login {
     display: flex;
@@ -48,6 +64,15 @@ export const Form = styled.form`
   .navigate-register {
     font-size: 13px;
     font-weight: bolder;
+
+    text-align: center;
+
     color: rgb(52, 131, 250);
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 90vh;
+    width: 60vw;
+    padding: 50px;
   }
 `;

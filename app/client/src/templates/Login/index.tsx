@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { gapi } from 'gapi-script';
 
 import Button from '../../components/Button';
+import GoogleButton from '../../components/GoogleButton';
 
 import { Container, Form } from './styles';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
@@ -35,9 +37,21 @@ const Login: React.FC = () => {
     setButtonDisabled(!isButtonDisabled);
   }, [email, password]);
 
+  useEffect(() => {
+    const start = () => {
+      gapi.client.init({
+        clientId: process.env.CLIENT_ID,
+        scope: "",
+      });
+    };
+
+    gapi.load('client:auth2', start);
+  }, []);
+
   return (
     <Container>
       <Form action="">
+        <h1>LOGIN</h1>
         {/* Email */}
         <label htmlFor="input-email" className="label-info-login">
           Email
@@ -68,9 +82,14 @@ const Login: React.FC = () => {
         </label>
 
         <label htmlFor="" className="label-show-input">
-          <input type="checkbox" onChange={ handleChangeMessage }/>
+          <input
+            type="checkbox"
+            onChange={ handleChangeMessage }
+          />
           { showInputMessage }
         </label>
+
+        <GoogleButton />
 
         {/* Enter */}
         <Button
@@ -80,7 +99,7 @@ const Login: React.FC = () => {
         />
         {/* Register */}
 
-        <a href="" className="navigate-register">
+        <a href="/register" className="navigate-register">
           <span>Criar conta</span>
         </a>
 

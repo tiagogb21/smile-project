@@ -7,10 +7,11 @@ export const Container = styled.footer`
   justify-content: center;
   align-items: center;
 
-  background: rgb(9, 2, 100);
+  background: radial-gradient(#C1F3FA, #8FE8F6, #3FB2C4);
 
   p {
     font-size: 15px;
-    color: #ffffff;
+    font-weight: bold;
+    color: rgb(83,76,173);
   }
 `;

@@ -5,16 +5,17 @@ import Button from '../../components/Button';
 
 import { Container, Form } from './styles';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
-import { addEmailToLogin, addPasswordToLogin } from '../../redux/reducers/loginReducer';
 import { validateEmail, validatePassword } from '../../service/function';
+import { addEmailToRegister, addNameToRegister, addPasswordToRegister } from '../../redux/reducers/registerReducer';
 
 const Register: React.FC = () => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [controlInput, setControlInput] = useState(true);
   const [showPassword, setShowPassword] = useState('password');
   const [showInputMessage, setShowInputMessage] = useState('Mostrar password');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const { email, password } = useAppSelector(state => state.login);
+  const { name, email, password } = useAppSelector(state => state.register);
 
   const dispatch = useAppDispatch();
 
@@ -31,50 +32,70 @@ const Register: React.FC = () => {
   }
 
   useEffect(() => {
-    const isButtonDisabled = validateEmail(email) && validatePassword(password);
+    const isButtonDisabled = validateEmail(email) && validatePassword(password) && password === confirmPassword;
     setButtonDisabled(!isButtonDisabled);
-  }, [email, password]);
+  }, [email, password, confirmPassword]);
 
   return (
     <Container>
       <Form action="">
+        <h1>CADASTRO</h1>
         {/* Name */}
-        <label htmlFor="input-email" className="label-info-login">
-          Name
+        <label htmlFor="input-name-register" className="label-info-login">
+          Nome
           <input
             id="input-email"
             type="email"
-            value={ email }
+            value={ name }
             onChange={(e) => {
-              dispatch(addEmailToLogin(e.target.value))
+              dispatch(addNameToRegister(e.target.value))
             } }
             placeholder="Digite seu email"
             required
           />
         </label>
+
         {/* Email */}
-        <label htmlFor="input-email" className="label-info-login">
+        <label htmlFor="input-email-register" className="label-info-login">
           Email
           <input
             id="input-email"
             type="email"
             value={ email }
             onChange={(e) => {
-              dispatch(addEmailToLogin(e.target.value))
+              dispatch(addEmailToRegister(e.target.value))
             } }
             placeholder="Digite seu email"
             required
           />
         </label>
+
         {/* Password */}
-        <label htmlFor="input-password" className="label-info-login">
+        <label htmlFor="input-password-register" className="label-info-login">
           Password
           <input
             id="input-password"
             type={showPassword}
             value={ password }
             onChange={(e) => {
-              dispatch(addPasswordToLogin(e.target.value))
+              dispatch(addPasswordToRegister(e.target.value))
+            } }
+            placeholder="********"
+            required
+          />
+        </label>
+
+        <label
+          htmlFor="input-check-password-register"
+          className="label-info-login"
+        >
+          Confirmar Password
+          <input
+            id="input-password"
+            type={showPassword}
+            value={ confirmPassword }
+            onChange={(e) => {
+              setConfirmPassword(e.target.value)
             } }
             placeholder="********"
             required
@@ -92,10 +113,10 @@ const Register: React.FC = () => {
           onClick={ handleClick }
           disabled={ buttonDisabled }
         />
-        {/* Register */}
 
-        <a href="" className="navigate-register">
-          <span>Criar conta</span>
+        {/* LOGIN */}
+        <a href="/" className="navigate-register">
+          <span>Fazer login</span>
         </a>
 
       </Form>

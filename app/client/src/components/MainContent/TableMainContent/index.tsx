@@ -1,20 +1,21 @@
 import React from "react";
 
-import "./styles.css";
+import { Container } from './styles';
 
 const TableMainContent: React.FC = () => {
   return (
-    <table className="table-main-content__container">
+    <Container>
       <thead>
         <tr>
-          <th>Criado em</th>
-          <th>Criado por</th>
+          <th>Data</th>
+          <th>Cliente</th>
           <th>Valor</th>
+          <th>Vence</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody></tbody>
-    </table>
+    </Container>
   );
 };
 

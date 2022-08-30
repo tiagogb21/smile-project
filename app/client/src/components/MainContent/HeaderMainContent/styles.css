@@ -1,6 +1,6 @@
 .header-main {
   width: 100vw;
-  height: 22vh;
+  height: 36vh;
 
   padding: 0 15px;
 
@@ -52,10 +52,16 @@
 
 .header-main-bottom {
   width: 95%;
+  height: 20vh;
 
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 30px;
+
+  color: rgb(140, 140, 140)
 }
 
 .header-main-bottom select {
@@ -68,4 +74,27 @@
 
   font-size: 15px;
   color: rgb(119, 118, 118);
+}
+
+.input__box {
+  width: 130px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input__box input {
+  border: 1px solid rgb(196, 195, 195);
+}
+
+.payment__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.payment__box p {
+  margin: 0;
 }

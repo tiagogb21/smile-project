@@ -84,3 +84,5 @@ export const calculatorButtons = [
 export const signalStore = '+-÷x=%';
 
 export const MINIMUM_VALUE = 15
+
+export const CLIENT_ID = '497168286065-im79kqtbme8kuhhckre9i2lna5jbahr0.apps.googleusercontent.com';

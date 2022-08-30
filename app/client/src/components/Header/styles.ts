@@ -10,7 +10,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  background: #b5f8dc;
+  background: radial-gradient(#C1F3FA, #8FE8F6, #3FB2C4);
 
   .title-smile {
     height: 100%;
@@ -35,6 +35,8 @@ export const Container = styled.div`
 
     display: flex;
     align-items: center;
+
+    border-radius: 50%;
 
     font-size: 30px;
     color: rgb(83, 76, 173);

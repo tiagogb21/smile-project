@@ -9,25 +9,29 @@ const HeaderMainContent: React.FC = () => {
       <section className="header-main-top">
         <h2>Agendamento</h2>
         <button className="btn-add-new" type="button">
-          <BsPlusLg />
-          Novo
+          Concluir
         </button>
       </section>
       <section className="header-main-bottom">
-        <select name="" id="">
-          {/* person */}
-          <option value="">Criado por</option>
-          <optgroup>
-            <option value=""></option>
-          </optgroup>
-        </select>
-        <select name="" id="">
-          {/* cliente */}
-          <option value="">Cliente</option>
-          <optgroup>
-            <option value=""></option>
-          </optgroup>
-        </select>
+        <label className="input__box" htmlFor="">
+          Criado por
+          <input type="text" />
+        </label>
+        <label className="input__box"  htmlFor="">
+          Cliente
+          <input type="text" />
+        </label>
+        <label className="input__box" htmlFor="input-value">
+          Valor
+          <input className="input-value" id="input-value" type="text" />
+        </label>
+        <article className="payment__box">
+          <p>Pagamento</p>
+          <select name="" id="">
+            <option value="">Pendente</option>
+            <option value="">Concluído</option>
+          </select>
+        </article>
       </section>
     </header>
   );
