@@ -1,4 +1,4 @@
-### Smile-Project
+# Smile-Project
 
 ## Objetivo:
  O projeto visa a construção de um aplicativo, o qual tem como função simular uma agenda integrada a uma calculadora.
