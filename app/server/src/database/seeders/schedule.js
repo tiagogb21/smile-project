@@ -5,6 +5,7 @@ module.exports = {
       [
         {
           id: 1,
+          dueDate: "",
           createdBy: "admin",
           value: 0,
           status: 0,

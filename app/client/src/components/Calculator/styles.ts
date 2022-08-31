@@ -2,7 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   width: 100vw;
-  height: 100vh;
+  height: 60vh;
+
+  position: absolute;
+  z-index: 100;
+  top: 170px;
+
+  border: 5px solid blue;
 
   display: flex;
   flex-direction: column;
@@ -10,6 +16,7 @@ export const Container = styled.section`
   align-items: center;
 
   font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
 
   .close-btn__container {
     width: 310px;
@@ -153,5 +160,12 @@ export const Container = styled.section`
     color: #ffffff;
     font-weight: bold;
     background: rgb(66, 133, 244);
+  }
+
+  @media screen and (min-width: 768px) {
+    border: 1px solide blue;
+    width: 40vw;
+    top: 180px;
+    left: 170px;
   }
 `;

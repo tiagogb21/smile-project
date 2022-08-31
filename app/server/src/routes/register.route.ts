@@ -8,7 +8,6 @@ const controller = new RegisterController();
 
 routes.post(
   "/",
-  RegisterMiddleware.isValidRole,
   RegisterMiddleware.isValidName,
   RegisterMiddleware.isValidEmail,
   RegisterMiddleware.isValidPassword,

@@ -16,7 +16,7 @@ const GoogleButton: React.FC = () => {
   }
 
   const onFailure = (res: GoogleLoginResponseOffline | GoogleLoginResponse) => {
-    console.log(`LOGIN FAILED! ${ JSON.parse(JSON.stringify(res)) }`);
+    console.log(`LOGIN FAILED! ${ JSON.stringify(res) }`);
   }
 
   return (

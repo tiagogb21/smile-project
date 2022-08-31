@@ -1,35 +1,21 @@
 import { Request, Response, NextFunction } from "express";
 
 const allFieldsMessage = "All fields must be filled";
-const incorrectMessage = "Incorrect role, username, email or password";
+const incorrectMessage = "Incorrect username, email or password";
 
 export default class RegisterMiddleware {
-  static isValidRole(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Response | void {
-    const { role } = req.body;
-
-    if (!role) {
-      return res.status(400).json({ message: allFieldsMessage });
-    }
-
-    next();
-  }
-
   static isValidName(
     req: Request,
     res: Response,
     next: NextFunction
   ): Response | void {
-    const { username } = req.body;
+    const { name } = req.body;
 
-    if (username.length === 0 || !username) {
+    if (name.length === 0 || !name) {
       return res.status(400).json({ message: allFieldsMessage });
     }
 
-    if (username.length < 12) {
+    if (name.length < 12) {
       return res.status(401).json({ message: incorrectMessage });
     }
 

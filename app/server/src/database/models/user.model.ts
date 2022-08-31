@@ -3,10 +3,9 @@ import db from "./index";
 
 export default class User extends Model {
   public id!: number;
+  public name!: string;
   public email!: string;
   public password!: string;
-  public role!: string;
-  public username!: string;
 }
 
 User.init(
@@ -17,11 +16,7 @@ User.init(
       primaryKey: true,
       allowNull: false,
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    role: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },

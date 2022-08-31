@@ -11,7 +11,9 @@ export default class RegisterController {
       return res.status(200).json({ newUser });
     } catch (error) {
       const getError = error as GenericError;
-      return res.status(getError.status).json({ message: getError.message });
+      return res
+        .status(getError.status | 401)
+        .json({ message: getError.message });
     }
   };
 }

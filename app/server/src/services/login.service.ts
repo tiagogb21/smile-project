@@ -1,6 +1,6 @@
 import { GenericError, Bcrypt, JWT } from "../utils";
 import UsersModel from "../database/models/user.model";
-import IUser, { ILogin, ITokenData } from "../interfaces/IUser";
+import IUser, { ITokenData } from "../interfaces/IUser";
 
 const incorrectMessage = "Incorrect email or password";
 
@@ -9,7 +9,7 @@ export default class LoginService {
   private jwt = new JWT();
   private bcrypt = new Bcrypt();
 
-  isValidLogin = async (login: ILogin) => {
+  isValidLogin = async (login: IUser) => {
     const { password: loginPassword } = login;
 
     const getUserByEmail = await this.model.findOne({
@@ -24,7 +24,9 @@ export default class LoginService {
       loginPassword,
       password
     );
+
     if (!isValidPassword) throw new GenericError(401, incorrectMessage);
+
     return this.jwt.generateToken(userInfo);
   };
 
@@ -33,6 +35,6 @@ export default class LoginService {
     const {
       data: {},
     } = validToken as ITokenData;
-    return { role: "admin" };
+    return validToken;
   }
 }

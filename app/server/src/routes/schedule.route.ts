@@ -5,6 +5,6 @@ const routes = Router();
 
 const controller = new SchedulleController();
 
-routes.post("/", controller.scheduleSuccess);
+routes.post("/", controller.createNewSchedule);
 
 export default routes;

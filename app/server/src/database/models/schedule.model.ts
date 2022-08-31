@@ -3,6 +3,7 @@ import db from "./index";
 
 export default class Schedule extends Model {
   public id!: number;
+  public dueDate: number;
   public createdBy!: string;
   public value!: string;
   public status!: string;
@@ -16,6 +17,10 @@ Schedule.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+      allowNull: false,
+    },
+    dueDate: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     createdBy: {

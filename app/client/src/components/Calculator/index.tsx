@@ -5,6 +5,9 @@ import { calculatorButtons, MINIMUM_VALUE, signalStore } from '../../utils/data'
 
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { MdOutlineNightlight, MdOutlineLightMode } from 'react-icons/md';
+import { useAppSelector } from '../../redux/store/hooks';
+import { toggleButton } from '../../redux/reducers/closeCalculator';
+import { useAppDispatch } from '../../redux/store/store';
 
 interface IItem {
   class: string;
@@ -14,6 +17,9 @@ interface IItem {
 const Calculator: React.FC = () => {
   const [buttonValue, setButtonValue] = useState('0');
   const [changeStyle, setChangeStyle] = useState(true);
+
+  const dispatch = useAppDispatch();
+  const { buttonClose } = useAppSelector(state => state.buttonClose);
 
   const signalButton = (signal: any, num1: number, num2: number) => {
     switch(signal) {
@@ -72,13 +78,13 @@ const Calculator: React.FC = () => {
   }
 
   return (
-    <Container style={ { backgroundColor: changeStyle ? 'black' : '#ffffff' } }>
+    <Container style={ { backgroundColor: !changeStyle ? 'black' : '#ffffff' } }>
       <article className="close-btn__container">
         <button
           type="button"
           className="btn-toggle-light"
           onClick={ handleClickChange }
-          style={ { color: !changeStyle ? 'black' : '#ffffff' } }
+          style={ { color: changeStyle ? 'black' : '#ffffff' } }
         >
           {
             changeStyle ?
@@ -92,7 +98,8 @@ const Calculator: React.FC = () => {
         <button
           type="button"
           className="btn-close"
-          style={ { color: !changeStyle ? 'black' : '#ffffff' } }
+          style={ { color: changeStyle ? 'black' : '#ffffff' } }
+          onClick={() => dispatch(toggleButton(!buttonClose))}
         >
           <AiFillCloseCircle />
           <span>

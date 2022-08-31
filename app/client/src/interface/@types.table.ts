@@ -1,7 +1,7 @@
 export interface ITable {
-  date: string;
-  user: string;
-  client: string;
+  dueDate: string;
+  createdBy: string;
+  // client: string;
   value: string;
   status: string;
 }

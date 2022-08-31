@@ -14,7 +14,6 @@ const Login: React.FC = () => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [controlInput, setControlInput] = useState(true);
   const [showPassword, setShowPassword] = useState('password');
-  const [showInputMessage, setShowInputMessage] = useState('Mostrar password');
 
   const { email, password } = useAppSelector(state => state.login);
 
@@ -28,7 +27,6 @@ const Login: React.FC = () => {
 
   const handleChangeMessage = () => {
     setShowPassword(controlInput ? 'text' : 'password');
-    setShowInputMessage(controlInput ? 'Mostrar password' : 'Esconder password');
     setControlInput(!controlInput);
   }
 
@@ -86,7 +84,7 @@ const Login: React.FC = () => {
             type="checkbox"
             onChange={ handleChangeMessage }
           />
-          { showInputMessage }
+          Mostrar password
         </label>
 
         <GoogleButton />

@@ -9,7 +9,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   return (
     <Container
       type="button"
-      onClick={() => onClick}
+      onClick={onClick}
       disabled={disabled}
       className="button-blue"
     >

@@ -5,8 +5,6 @@ export default class ScheduleService {
   private model = ScheduleModel;
 
   createNewSchedule = async (newSchedule: IUser) => {
-    const { email } = newSchedule;
-
     return await this.model.create({ ...newSchedule });
   };
 }

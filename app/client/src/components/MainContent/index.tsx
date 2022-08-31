@@ -2,14 +2,14 @@ import React from "react";
 import HeaderMainContent from "./HeaderMainContent";
 import TableMainContent from "./TableMainContent";
 
-import "./styles.css";
+import {Container} from './styles';
 
 const MainContent: React.FC = () => {
   return (
-    <main className="main-content__container">
+    <Container>
       <HeaderMainContent />
       <TableMainContent />
-    </main>
+    </Container>
   );
 };
 

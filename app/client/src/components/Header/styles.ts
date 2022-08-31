@@ -30,11 +30,15 @@ export const Container = styled.div`
 
   .btn-menu,
   .btn-user {
+    height: 40px;
+    width: 40px;
+
     border: none;
     padding: 5px;
 
     display: flex;
     align-items: center;
+    justify-content: center;
 
     border-radius: 50%;
 

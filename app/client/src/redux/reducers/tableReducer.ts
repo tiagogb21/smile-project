@@ -5,9 +5,9 @@ import { ITable, TableState } from "../../interface/@types.table";
 const initialState: TableState = {
   schedule: [
     {
-      date: '',
-      user: '',
-      client: '',
+      dueDate: '',
+      createdBy: '',
+      // client: '',
       value: '',
       status: '',
     }

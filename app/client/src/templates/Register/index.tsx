@@ -7,12 +7,12 @@ import { Container, Form } from './styles';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
 import { validateEmail, validatePassword } from '../../service/function';
 import { addEmailToRegister, addNameToRegister, addPasswordToRegister } from '../../redux/reducers/registerReducer';
+import axios from 'axios';
 
 const Register: React.FC = () => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [controlInput, setControlInput] = useState(true);
   const [showPassword, setShowPassword] = useState('password');
-  const [showInputMessage, setShowInputMessage] = useState('Mostrar password');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const { name, email, password } = useAppSelector(state => state.register);
@@ -21,20 +21,31 @@ const Register: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  useEffect(() => {
+    const isButtonDisabled = validateEmail(email) && validatePassword(password) && password === confirmPassword;
+    setButtonDisabled(!isButtonDisabled);
+  }, [email, password, confirmPassword]);
+
+  const handleClick = async () => {
+    const createNewUser = await axios.post(
+      'http://localhost:3001/register',
+      {
+        name,
+        email,
+        password,
+      },
+    ).then((result) => result)
+    .catch((error) => error);
+    if(createNewUser?.message?.includes('failed')) {
+      return;
+    }
     navigate('/main');
   }
 
   const handleChangeMessage = () => {
     setShowPassword(controlInput ? 'text' : 'password');
-    setShowInputMessage(controlInput ? 'Mostrar password' : 'Esconder password');
     setControlInput(!controlInput);
   }
-
-  useEffect(() => {
-    const isButtonDisabled = validateEmail(email) && validatePassword(password) && password === confirmPassword;
-    setButtonDisabled(!isButtonDisabled);
-  }, [email, password, confirmPassword]);
 
   return (
     <Container>
@@ -44,7 +55,7 @@ const Register: React.FC = () => {
         <label htmlFor="input-name-register" className="label-info-login">
           Nome
           <input
-            id="input-email"
+            id="input-name-register"
             type="email"
             value={ name }
             onChange={(e) => {
@@ -59,7 +70,7 @@ const Register: React.FC = () => {
         <label htmlFor="input-email-register" className="label-info-login">
           Email
           <input
-            id="input-email"
+            id="input-email-register"
             type="email"
             value={ email }
             onChange={(e) => {
@@ -74,7 +85,7 @@ const Register: React.FC = () => {
         <label htmlFor="input-password-register" className="label-info-login">
           Password
           <input
-            id="input-password"
+            id="input-password-register"
             type={showPassword}
             value={ password }
             onChange={(e) => {
@@ -104,13 +115,16 @@ const Register: React.FC = () => {
 
         <label htmlFor="" className="label-show-input">
           <input type="checkbox" onChange={ handleChangeMessage }/>
-          { showInputMessage }
+          Mostrar password
         </label>
 
         {/* Enter */}
         <Button
           label="Entrar"
-          onClick={ handleClick }
+          onClick={() => {
+            console.log('a');
+            handleClick()
+          } }
           disabled={ buttonDisabled }
         />
 

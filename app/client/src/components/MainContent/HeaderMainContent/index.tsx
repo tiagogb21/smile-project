@@ -1,45 +1,69 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsCalculator } from "react-icons/bs";
+import { toggleButton } from '../../../redux/reducers/closeCalculator';
 import { insertDataInSchedule } from '../../../redux/reducers/tableReducer';
+import { useAppSelector } from '../../../redux/store/hooks';
 import { useAppDispatch } from '../../../redux/store/store';
 
-import "./styles.css";
+import {Container} from './styles';
+
+import axios from 'axios';
 
 const HeaderMainContent: React.FC = () => {
   const [requiredFields, setRequiredFields] = useState(false);
-  const [teste, setTeste] = useState(true);
-
   const [dataSchedule, setDataSchedule] = useState({
-    date: '',
-    user: '',
-    client: '',
+    dueDate: '',
+    createdBy: '',
     value: '',
     status: 'pendente',
+    client: '',
   });
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if(dataSchedule.date.length > 0
-      && dataSchedule.user.length > 0
-      && dataSchedule.client.length > 0
-      && dataSchedule.value) {
-        console.log('aaaaaa')
-        setTeste(false);
+  const { buttonClose } = useAppSelector(state => state.buttonClose);
+
+  const handleClick = () => {
+    if(dataSchedule.dueDate !== ''
+      && dataSchedule.client !== ''
+      && dataSchedule.value !== '') {
         setRequiredFields(false);
+        const { client, ...exceptClient } = dataSchedule;
+        dispatch(insertDataInSchedule(exceptClient))
+        setDataSchedule({
+          dueDate: '',
+          createdBy: '',
+          client: '',
+          value: '',
+          status: 'pendente',
+        })
+        return;
     }
-    console.log(dataSchedule.date.length > 0
-      && dataSchedule.user.length > 0
-      && dataSchedule.client.length > 0
-      && dataSchedule.value)
-  }, [dataSchedule]);
+    setRequiredFields(true);
+  };
+
+  const saveSchedule = async () => {
+    console.log(dataSchedule);
+    const createSchedule = await axios.post(
+      'http://localhost:3001/schedule',
+      { ...dataSchedule },
+    ).then((result) => result)
+    .catch((error) => error);
+    if(createSchedule?.message?.includes('failed')) {
+      return;
+    }
+  }
 
   return (
-    <header className="header-main">
+    <Container>
       <section className="header-main-top">
         <h2>Agendamento</h2>
-        <button className="btn-add-new" type="button">
-          Concluir
+        <button
+          className="btn-add-new"
+          type="button"
+          onClick={ saveSchedule }
+        >
+          CONCLUIR
         </button>
       </section>
       <section className="header-main-bottom">
@@ -58,11 +82,17 @@ const HeaderMainContent: React.FC = () => {
           />
         </label>
         <label className="input__box" htmlFor="input-value">
-          <span className="value-calc__span__box">Valor <BsCalculator /></span>
+          <span
+            className="value-calc__span__box"
+            onClick={() => dispatch(toggleButton(!buttonClose))}
+          >
+            Valor
+            <BsCalculator />
+          </span>
           <input
             className="input-value"
             id="input-value"
-            type="text"
+            type="number"
             value={ dataSchedule.value }
             onChange={(e) => {
               setDataSchedule((prev) => ({
@@ -77,11 +107,11 @@ const HeaderMainContent: React.FC = () => {
           Vencimento
           <input
             type="date"
-            value={ dataSchedule.date }
+            value={ dataSchedule.dueDate }
             onChange={(e) => {
               setDataSchedule((prev) => ({
                 ...prev,
-                date: e.target.value
+                dueDate: e.target.value
               }))
             } }
             required
@@ -94,7 +124,7 @@ const HeaderMainContent: React.FC = () => {
               const optionValue = e.target.options[e.target.selectedIndex].value;
               setDataSchedule((prev) => ({
                 ...prev,
-                date: optionValue
+                status: optionValue
               }))
             }}
           >
@@ -111,14 +141,12 @@ const HeaderMainContent: React.FC = () => {
         <button
           className="btn-add-new btn-new-schedule"
           type="button"
-          onClick={() => {
-            return teste ? setRequiredFields(true) : dispatch(insertDataInSchedule(dataSchedule))
-          } }
+          onClick={handleClick}
         >
-          Add
+          ADD
         </button>
       </article>
-    </header>
+    </Container>
   );
 };
 
