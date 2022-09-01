@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAppSelector } from '../../../redux/store/hooks';
-import { convertIntoReal } from '../../../utils/data';
+import { convertIntoReal, dataTransform } from '../../../utils/data';
 
 import { Container, TableContainer } from './styles';
 import { VscTriangleLeft, VscTriangleRight } from 'react-icons/vsc';
@@ -33,11 +33,11 @@ const TableMainContent: React.FC = () => {
       <TableContainer>
         <thead>
           <tr>
-            <th>Data</th>
+            <th>Nome</th>
             <th>Cliente</th>
             <th>Valor</th>
-            {/* <th>Vence</th> */}
             <th>Status</th>
+            <th>Vence</th>
           </tr>
         </thead>
         <tbody>
@@ -45,15 +45,19 @@ const TableMainContent: React.FC = () => {
             schedule &&
             schedule?.slice(min, min + 5).map((item, id) => (
               <tr key={ id }>
-                <td>{ item.dueDate }</td>
-                {/* <td>{ item.user }</td> */}
-                {/* <td>{ item.client }</td> */}
+                <td>{ item.createdBy }</td>
+                <td>{ item.client }</td>
                 <td>
                   {
-                    convertIntoReal(item.value)
+                    convertIntoReal(+item.value)
                   }
                 </td>
                 <td>{ item.status }</td>
+                <td>
+                  {
+                    dataTransform(item.dueDate)
+                  }
+                </td>
               </tr>
             ))
           }

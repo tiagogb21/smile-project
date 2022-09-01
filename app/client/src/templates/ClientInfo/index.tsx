@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { Container } from './styles';
 
-import { IClient } from '../../interface/@types.clients';
+import { IClient } from '../../interface/clients.interface';
 
 const ClientInfo: React.FC = () => {
   const [clientInfo, setClientInfo] = useState<IClient | null>();

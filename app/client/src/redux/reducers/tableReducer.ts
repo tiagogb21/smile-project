@@ -1,17 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { ITable, TableState } from "../../interface/@types.table";
+import { ITable, TableState } from "../../interface/table.interface";
+import { scheduleData } from '../../utils/data';
 
 const initialState: TableState = {
-  schedule: [
-    {
-      dueDate: '',
-      createdBy: '',
-      // client: '',
-      value: '',
-      status: '',
-    }
-  ]
+  schedule: [scheduleData]
 };
 
 export const TableSlice = createSlice({
@@ -22,12 +15,19 @@ export const TableSlice = createSlice({
       state.schedule = [...state.schedule, action.payload];
     },
     removeDataFromSchedule: (state, action: PayloadAction<number>) => {
-      let getFirstSplice = state.schedule.splice(0, action.payload);
-      let getSecondSplice = state.schedule.splice(action.payload);
+      const getFirstSplice = state.schedule.splice(0, action.payload);
+      const getSecondSplice = state.schedule.splice(action.payload);
       state.schedule = [...getFirstSplice, ...getSecondSplice];
     },
+    cleanSchedules: (state) => {
+      state.schedule = [];
+    }
   },
 });
 
-export const { insertDataInSchedule, removeDataFromSchedule } = TableSlice.actions;
+export const {
+  insertDataInSchedule,
+  removeDataFromSchedule,
+  cleanSchedules
+} = TableSlice.actions;
 export default TableSlice.reducer;

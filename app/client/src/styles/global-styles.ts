@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { ThemeType } from '../interface/@types.theme';
+import { ThemeType } from '../interface/theme.interface';
 
 export const GlobalStyles = createGlobalStyle<{theme: ThemeType}>`
   * {
@@ -17,16 +17,6 @@ export const GlobalStyles = createGlobalStyle<{theme: ThemeType}>`
   body {
     font-size: 1.6rem;
     font-family: ${({ theme }) => theme.font.family.default};
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: ${({ theme }) => theme.font.family.secondary};
-    margin: ${({ theme }) => theme.spacings.large} 0;
-  }
-
-  ul, ol {
-    margin: ${({ theme }) => theme.spacings.medium};
-    padding: ${({ theme }) => theme.spacings.medium};
   }
 
   a {

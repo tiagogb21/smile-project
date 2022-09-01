@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { ButtonCloseType } from "../../interface/@types.closeButton";
+import { ButtonCloseType } from "../../interface/closeButton.interface";
 
 const initialState: ButtonCloseType = {
   buttonClose: true,

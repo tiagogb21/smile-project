@@ -1,9 +1,9 @@
 export interface ITable {
-  dueDate: string;
   createdBy: string;
-  // client: string;
+  client: string;
   value: string;
   status: string;
+  dueDate: string;
 }
 
 export type TableState = {
@@ -15,3 +15,7 @@ export type TableAction = {
   table: ITable;
 };
 
+export interface IError {
+  path: string;
+  message: string;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps } from '../../interface/@types.button';
+import { ButtonProps } from '../../interface/button.interface';
 
 import {Container} from './styles'
 

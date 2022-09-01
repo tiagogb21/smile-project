@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { RegisterType } from "../../interface/@types.register";
+import { RegisterType } from "../../interface/register.interface";
 
 const initialState: RegisterType = {
   name: '',

@@ -24,17 +24,17 @@ const Header: React.FC = () => {
 
   return (
     <Container>
-      {/* Menu */}
+
       <button className="btn-menu" type="button" onClick={clickOpenCloseAside}>
         <GiHamburgerMenu />
       </button>
-      {/* Logo */}
+
       <h1 className="title-smile">
         <BiWinkSmile className="logo-title-smile" />
         <span>SMI</span>
         <span>LE</span>
       </h1>
-      {/* User */}
+
       <button className="btn-user" type="button" onClick={clickOpenCloseUser}>
         <ImUser />
       </button>

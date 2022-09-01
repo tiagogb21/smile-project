@@ -15,48 +15,18 @@ interface IItem {
 }
 
 const Calculator: React.FC = () => {
-  const [buttonValue, setButtonValue] = useState('0');
+  const [buttonValue, setButtonValue] = useState('');
   const [changeStyle, setChangeStyle] = useState(true);
 
   const dispatch = useAppDispatch();
   const { buttonClose } = useAppSelector(state => state.buttonClose);
 
-  const signalButton = (signal: any, num1: number, num2: number) => {
-    switch(signal) {
-      case '+':
-        return setButtonValue(`${ num1 + num2 }`);
-      case '-':
-        return setButtonValue(`${ num1 - num2 }`);
-      case '÷':
-        return setButtonValue(`${ num1 / num2 }`);
-      case 'x':
-        return setButtonValue(`${ num1 * num2 }`);
-      case '%':
-        return setButtonValue(`${ num1 % num2 }`);
-      default:
-        return;
-    }
-  }
-
-  const verify = () => {
-    const findSignal = buttonValue?.split('').find((item) => signalStore.includes(item));
-    return findSignal;
-  }
-
-  const calculate = (signal: string) => {
-    if (signalStore.includes(signal)) {
-      const position = buttonValue.indexOf(signal);
-      const num1 = buttonValue.slice(0, position-1);
-      const num2 = buttonValue.slice(position);
-      signalButton(verify(), +num1, +num2)
-    }
-  }
-
   const handleClick = (e: React.MouseEvent) => {
     const target = (e.target as HTMLButtonElement);
     const targetValue = target.textContent || '';
-    if(targetValue === '='){
-      return calculate(targetValue);
+    if (targetValue === '=') {
+      setButtonValue((eval(buttonValue)).toFixed(2).toString());
+      return;
     } else if (buttonValue.length < MINIMUM_VALUE) {
       if(signalStore.includes(targetValue)
       && signalStore.includes(buttonValue[buttonValue.length - 1])) {

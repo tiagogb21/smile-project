@@ -12,11 +12,9 @@ import {
 const RegisterPatient: React.FC = () => {
   return (
     <Container>
-      {/* Foto */}
-      {/* Identificação */}
+
       <h3 className="h3-title">Cadastro de cliente</h3>
 
-      {/* Dados Pessoais */}
       <PersonalForm>
         <PersonalData>
           <legend>Dados Pessoais</legend>

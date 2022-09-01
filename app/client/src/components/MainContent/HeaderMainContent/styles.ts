@@ -132,11 +132,11 @@ export const Container = styled.div`
     height: 40vh;
 
     .header-main-top {
-      width: 90%;
+      width: 85%;
     }
 
     .header-main-bottom {
-      width: 90%;
+      width: 85%;
       display: flex;
       justify-content: space-between;
     }

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { AsideType } from "../../interface/@types.aside";
+import { AsideType } from "../../interface/aside.interface";
 
 const initialState: AsideType = {
   isAsideOpen: true

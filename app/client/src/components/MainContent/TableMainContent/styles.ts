@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  width: 100vw;
+  width: 95vw;
   height: 50vh;
 
   display: flex;
@@ -60,6 +60,8 @@ export const TableContainer = styled.table`
 
   th {
     width: 70px;
+
+    background: lightgray;
 
     border: 1px solid rgb(196, 195, 195);
     padding: 5px;

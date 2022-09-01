@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Calculator from '../components/Calculator';
+import AdminPage from '../templates/AdminPage';
 import ClientInfo from '../templates/ClientInfo';
 
 import Login from '../templates/Login';
@@ -16,7 +16,7 @@ const PathRouter: React.FC = () => {
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/main" element={<MainPage />}/>
-        <Route path="/calculator" element={<Calculator />}/>
+        <Route path="/admin" element={<AdminPage />}/>
         <Route path="/register-patient" element={<RegisterPatient />}/>
         <Route path="/client-info" element={<ClientInfo />}/>
       </Routes>
