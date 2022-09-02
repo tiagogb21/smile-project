@@ -1,12 +1,60 @@
 import React, { useState } from "react";
 
-import { GiHamburgerMenu } from "react-icons/gi";
-import { ImUser } from "react-icons/im";
-import { BiWinkSmile } from "react-icons/bi";
-
-import { Container } from './styles';
 import { useAppDispatch } from '../../redux/store/store';
+
 import { toggleAside } from '../../redux/reducers/asideReducer';
+
+import {
+  AppBar,
+  Box,
+  Button,
+  IconButton,
+  Toolbar,
+  Typography
+} from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import { BiWinkSmile } from "react-icons/bi";
+import { GiHamburgerMenu } from "react-icons/gi";
+
+import Image from '../../assets/logo-site.jpg';
+
+const headerTheme = createTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: 'rgb(1, 240, 175)'
+      ,
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#03a9f4',
+    },
+  },
+});
+
+const styles = {
+  paperContainer: {
+      backgroundImage: `url(${Image})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: '100% 100%',
+      height: '50vh',
+      display: 'flex',
+      alignItems: 'flex-start',
+      paddingTop: '12px',
+  },
+  teste: {
+    fontSize: '17px',
+    fontWeight: '600',
+    color: '#0277bd',
+  },
+  te: {
+    marginTop: '7px',
+  },
+  te2: {
+    fontSize: '24px',
+  }
+}
 
 const Header: React.FC = () => {
   const [verifyAside, setVerifyAside] = useState(true);
@@ -23,22 +71,51 @@ const Header: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Box sx={{ flexGrow: 1 }}>
+      <ThemeProvider theme={ headerTheme }>
+        <AppBar position="static">
+          <Toolbar style={ styles.paperContainer }>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+              style={ { ...styles.teste, ...styles.te2 } }
+              onClick={clickOpenCloseAside}
+            >
+              <GiHamburgerMenu />
+            </IconButton>
 
-      <button className="btn-menu" type="button" onClick={clickOpenCloseAside}>
-        <GiHamburgerMenu />
-      </button>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1 }}
+              style={ { ...styles.teste, ...styles.te } }
+            >
+              <BiWinkSmile />
+              SMILE
+            </Typography>
 
-      <h1 className="title-smile">
-        <BiWinkSmile className="logo-title-smile" />
-        <span>SMI</span>
-        <span>LE</span>
-      </h1>
+            <Button
+              color="inherit"
+              onClick={clickOpenCloseUser}
+              style={ styles.teste }
+            >
+              Login
+            </Button>
 
-      <button className="btn-user" type="button" onClick={clickOpenCloseUser}>
-        <ImUser />
-      </button>
-    </Container>
+            <Button
+              color="inherit"
+              onClick={clickOpenCloseUser}
+              style={ styles.teste }
+            >
+              Cadastrar
+            </Button>
+          </Toolbar>
+        </AppBar>
+      </ThemeProvider>
+    </Box>
   );
 };
 

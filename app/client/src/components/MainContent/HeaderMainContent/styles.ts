@@ -5,6 +5,7 @@ export const Container = styled.div`
   height: 51vh;
 
   padding: 0 15px;
+  margin-top: 5vh;
 
   display: flex;
   flex-direction: column;
@@ -53,7 +54,7 @@ export const Container = styled.div`
 
   .header-main-bottom {
     width: 95%;
-    height: 20vh;
+    height: 25vh;
 
     display: grid;
     grid-template-columns: repeat(2, 130px);

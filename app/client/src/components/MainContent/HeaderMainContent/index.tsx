@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { BsCalculator } from "react-icons/bs";
 import { toggleButton } from '../../../redux/reducers/closeCalculator';
 import { cleanSchedules, insertDataInSchedule } from '../../../redux/reducers/tableReducer';
@@ -11,34 +11,12 @@ import { scheduleData } from '../../../utils/data';
 import { createSchedule } from '../../../service/api';
 import { IError, ITable } from '../../../interface/table.interface';
 
-import { TextField, Select, MenuItem } from '@mui/material';
-
-import * as yup from 'yup';
-
-const schema = yup.object().shape({
-  createdBy: yup.string().required(),
-  client: yup.string().required(),
-  value: yup.number().required().positive().integer(),
-  email: yup.string().email(),
-  status: yup.string().required(),
-  dueDate: yup
-    .date()
-    .required('Preencha a data de nascimento para prosseguir!')
-    .max(new Date(), 'Data de nascimento invalida!')
-    .typeError('Preencha a data de nascimento para prosseguir!'),
-});
-
-const initialData = {
-  createdBy: '',
-  client: '',
-  value: '',
-  status: '',
-  dueDate: '',
-};
+import { TextField, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+import schema from '../../../utils/yup';
 
 const HeaderMainContent: React.FC = () => {
-  const [findValues, setFindValues] = useState(initialData);
-  const [findError, setFindError] = useState(initialData);
+  const [findValues, setFindValues] = useState(scheduleData);
+  const [findError, setFindError] = useState(scheduleData);
   const [dataSchedule, setDataSchedule] = useState(scheduleData);
 
   const dispatch = useAppDispatch();
@@ -47,6 +25,10 @@ const HeaderMainContent: React.FC = () => {
   const { schedule } = useAppSelector(state => state.table);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDataSchedule(({
+      ...dataSchedule,
+      [event.target.name]: event.target.value,
+    }))
     setFindValues({
       ...findValues,
       [event.target.name]: event.target.value,
@@ -57,21 +39,33 @@ const HeaderMainContent: React.FC = () => {
     });
   }
 
+  const handleChangeSelect = (event: SelectChangeEvent<string>) => {
+    return setDataSchedule((prev) => ({
+      ...prev,
+      status: event.target.value
+    }));
+  }
+
   const handleClick = async () => {
-    await schema
+    const verifySchema = await schema
       .validate(findValues, { abortEarly: false })
       .then(() => {
-        setFindError(initialData)
+        setFindError(scheduleData)
         return true
       })
       .catch((err) => {
         const currentErrors = { ...scheduleData }
         err.inner.forEach((error: IError) => {
-          currentErrors[error.path] = error.message
+          const str: keyof IError = 'path';
+          const getError = error[str];
+          currentErrors[getError as keyof typeof currentErrors] = error.message
         })
         setFindError(currentErrors)
         return false
       })
+    if(!verifySchema) {
+      return;
+    }
     dispatch(insertDataInSchedule(dataSchedule));
     setDataSchedule(scheduleData)
     return;
@@ -101,46 +95,44 @@ const HeaderMainContent: React.FC = () => {
       </section>
       <section className="header-main-bottom">
         <TextField
-          // error={}
+          error={ findError.client !== '' }
           label="Cliente"
-          name="email"
+          name="client"
           value={ dataSchedule.client }
+          helperText={ findError.client }
           variant="outlined"
           type="text"
           style={{ marginTop: 16, width: '100%' }}
           onChange={ handleChange }
         />
         <TextField
-          // error={}
+          error={ findError.value !== '' }
           label="Valor"
-          name="valor"
+          name="value"
           value={ dataSchedule.value }
+          helperText={ findError.value }
           variant="outlined"
           type="text"
           style={{ marginTop: 16, width: '100%' }}
           onChange={ handleChange }
         />
         <TextField
-          // error={}
-          name="date"
+          error={ findError.dueDate !== '' }
+          name="dueDate"
           value={ dataSchedule.dueDate }
+          helperText={ findError.dueDate }
           variant="outlined"
           type="date"
           style={{ marginTop: 16, width: '100%' }}
           onChange={ handleChange }
         />
         <Select
+          defaultValue=""
           labelId="pendente-select-label"
-          id="demo-simple-select"
-          label="Pendente"
+          id="pendente-simple-select"
+          label="pendente"
           style={{ marginTop: 16, width: '100%' }}
-          onClick={(e: any) => {
-            const optionValue = e.target.options[e.target.selectedIndex].value;
-            setDataSchedule((prev) => ({
-              ...prev,
-              status: optionValue
-            }))
-          }}
+          onChange={ handleChangeSelect }
         >
             <MenuItem value="pendente">Pendente</MenuItem>
             <MenuItem value="concluido">Concluído</MenuItem>
