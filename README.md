@@ -15,7 +15,8 @@ React/Redux/Typescript/Styled-components/Storybook/Axios/Oauth(Google)
 Node/MVC/ORM(Sequelize)/Jwt/Bcript
 
 ## Testes:
-
+ <strong>Jest, Chai, Sinon, Mocha.</strong>
+ <br />
  Para esse projeto foram realizados testes tanto no front quanto no back.
 
 ## Images:
