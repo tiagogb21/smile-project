@@ -1,10 +1,11 @@
-import ScheduleModel from "../database/models/user.model";
-import IUser from "../interfaces/IUser";
+import ScheduleModel from "../database/models/schedule.model";
+import ISchedule from "../interfaces/ISchedule";
 
 export default class ScheduleService {
   private model = ScheduleModel;
 
-  createNewSchedule = async (newSchedule: IUser) => {
-    return await this.model.create({ ...newSchedule });
+  createNewSchedule = async (newSchedule: ISchedule) => {
+    const t = await this.model.create({ ...newSchedule });
+    return t;
   };
 }

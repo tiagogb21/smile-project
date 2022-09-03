@@ -11,11 +11,11 @@ export default class RegisterMiddleware {
   ): Response | void {
     const { name } = req.body;
 
-    if (name.length === 0 || !name) {
+    if (name?.length === 0 || !name) {
       return res.status(400).json({ message: allFieldsMessage });
     }
 
-    if (name.length < 12) {
+    if (name?.length < 12) {
       return res.status(401).json({ message: incorrectMessage });
     }
 
@@ -31,7 +31,7 @@ export default class RegisterMiddleware {
 
     const emailRegex = /\S+@\S+\.\S+/;
 
-    if (email.length === 0 || !email) {
+    if (email?.length === 0 || !email) {
       return res.status(400).json({ message: allFieldsMessage });
     }
     if (!emailRegex.test(email)) {
@@ -51,7 +51,7 @@ export default class RegisterMiddleware {
       return res.status(400).json({ message: allFieldsMessage });
     }
 
-    const validatePassword = password.length > 7;
+    const validatePassword = password?.length > 7;
     if (!validatePassword) {
       return res.status(401).json({ message: incorrectMessage });
     }

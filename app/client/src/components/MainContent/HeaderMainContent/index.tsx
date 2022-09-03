@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { BsCalculator } from "react-icons/bs";
 import { toggleButton } from '../../../redux/reducers/closeCalculator';
 import { cleanSchedules, insertDataInSchedule } from '../../../redux/reducers/tableReducer';
@@ -112,7 +112,7 @@ const HeaderMainContent: React.FC = () => {
           value={ dataSchedule.value }
           helperText={ findError.value }
           variant="outlined"
-          type="text"
+          type="number"
           style={{ marginTop: 16, width: '100%' }}
           onChange={ handleChange }
         />
@@ -142,7 +142,7 @@ const HeaderMainContent: React.FC = () => {
         <button
           className="btn-add-new btn-new-schedule"
           type="button"
-          onClick={handleClick}
+          onClick={ handleClick }
         >
           ADD
         </button>

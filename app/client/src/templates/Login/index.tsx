@@ -42,7 +42,7 @@ const Login: React.FC = () => {
           email,
           token,
           role
-        }))
+        }));
         if(role === 'user' || role === 'admin') navigate('/main');
         if(role === 'client') navigate('/client');
       })

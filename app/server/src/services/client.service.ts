@@ -19,8 +19,6 @@ export default class ClientService {
 
     if (!clientInfo) throw new GenericError(401, clientDoesntExist);
 
-    console.log(clientInfo);
-
     return clientInfo;
   };
 

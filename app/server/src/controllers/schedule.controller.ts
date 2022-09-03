@@ -7,7 +7,6 @@ export default class ScheduleController {
 
   createNewSchedule = async (req: Request, res: Response) => {
     try {
-      console.log(req.body);
       const newSchedule = await this.service.createNewSchedule(req.body);
       return res.status(200).json({ newSchedule });
     } catch (error) {

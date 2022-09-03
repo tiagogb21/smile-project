@@ -11,6 +11,9 @@ import { useAppSelector } from '../../redux/store/hooks';
 
 const MainPage: React.FC = () => {
   const { buttonClose } = useAppSelector(state => state.buttonClose);
+
+
+
   return (
     <Container>
       <Header />

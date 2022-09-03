@@ -3,10 +3,11 @@ import db from "./index";
 
 export default class Schedule extends Model {
   public id!: number;
-  public dueDate: number;
   public createdBy!: string;
+  public client!: string;
   public value!: string;
   public status!: string;
+  public dueDate: number;
   public created?: Date;
   public updated?: Date;
 }
@@ -19,11 +20,11 @@ Schedule.init(
       primaryKey: true,
       allowNull: false,
     },
-    dueDate: {
+    createdBy: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    createdBy: {
+    client: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -35,19 +36,15 @@ Schedule.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    updated: {
-      type: DataTypes.DATE,
+    dueDate: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
     sequelize: db,
-    modelName: "schedule",
-    underscored: true,
-    timestamps: true,
+    modelName: "schedules",
+    underscored: false,
+    timestamps: false,
   }
 );

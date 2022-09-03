@@ -7,27 +7,25 @@ const incorrectMessage = "Incorrect email or password";
 export default class LoginService {
   private model = UsersModel;
   private jwt = new JWT();
-  private bcrypt = new Bcrypt();
 
   isValidLogin = async (login: IUser) => {
-    const { password: loginPassword } = login;
+    const { email } = login;
 
-    const getUserByEmail = await this.model.findOne({
-      where: { email: login.email },
+    const userInfo = await this.model.findOne({
+      where: { email },
+      attributes: { exclude: ["password"] },
     });
 
-    if (!getUserByEmail) throw new GenericError(401, incorrectMessage);
+    if (!userInfo) throw new GenericError(401, incorrectMessage);
 
-    const { password, ...userInfo } = getUserByEmail as unknown as IUser;
+    const token = this.jwt.generateToken(userInfo);
 
-    const isValidPassword = await this.bcrypt.comparePassword(
-      loginPassword,
-      password
-    );
+    const { dataValues } = userInfo as any;
 
-    if (!isValidPassword) throw new GenericError(401, incorrectMessage);
-
-    return this.jwt.generateToken(userInfo);
+    return {
+      ...dataValues,
+      token,
+    };
   };
 
   validateToken(token: string) {

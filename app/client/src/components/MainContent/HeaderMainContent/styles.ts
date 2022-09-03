@@ -2,15 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100vw;
-  height: 51vh;
+  height: 45vh;
 
-  padding: 0 15px;
-  margin-top: 5vh;
+  padding: 150px 15px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 
   .header-main-top {
     width: 95%;
@@ -26,7 +25,7 @@ export const Container = styled.div`
 
   .btn-add-new {
     width: 30vw;
-    height: 4vh;
+    height: 6vh;
 
     border: none;
     border-radius: 6px;
@@ -62,7 +61,9 @@ export const Container = styled.div`
     align-items: center;
     gap: 10px;
 
-    color: rgb(140, 140, 140)
+    color: rgb(140, 140, 140);
+
+    margin: 15px 0;
   }
 
   .header-main-bottom select {
@@ -133,11 +134,11 @@ export const Container = styled.div`
     height: 40vh;
 
     .header-main-top {
-      width: 85%;
+      width: 93%;
     }
 
     .header-main-bottom {
-      width: 85%;
+      width: 93%;
       display: flex;
       justify-content: space-between;
     }

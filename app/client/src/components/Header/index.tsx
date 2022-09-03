@@ -17,17 +17,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BiWinkSmile } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-import Image from '../../assets/logo-site.jpg';
+import Image from '../../assets/dentist.png';
+import { useNavigate } from 'react-router-dom';
 
 const headerTheme = createTheme({
   palette: {
     primary: {
-      // Purple and green play nicely together.
       main: 'rgb(1, 240, 175)'
       ,
     },
     secondary: {
-      // This is green.A700 as hex.
       main: '#03a9f4',
     },
   },
@@ -38,15 +37,15 @@ const styles = {
       backgroundImage: `url(${Image})`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100% 100%',
-      height: '50vh',
+      height: '65vh',
       display: 'flex',
       alignItems: 'flex-start',
       paddingTop: '12px',
   },
   teste: {
-    fontSize: '17px',
+    fontSize: '18px',
     fontWeight: '600',
-    color: '#0277bd',
+    color: 'rgb(90, 90, 140)',
   },
   te: {
     marginTop: '7px',
@@ -58,6 +57,8 @@ const styles = {
 
 const Header: React.FC = () => {
   const [verifyAside, setVerifyAside] = useState(true);
+
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 

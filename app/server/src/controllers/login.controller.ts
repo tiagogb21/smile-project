@@ -7,11 +7,13 @@ export default class LoginController {
 
   loginSuccess = async (req: Request, res: Response) => {
     try {
-      const token = await this.service.isValidLogin(req.body);
-      return res.status(200).json({ token });
+      const user = await this.service.isValidLogin(req.body);
+      return res.status(200).json(user);
     } catch (error) {
       const getError = error as GenericError;
-      return res.status(getError.status).json({ message: getError.message });
+      return res
+        .status(getError.status | 401)
+        .json({ message: getError.message });
     }
   };
 

@@ -1,4 +1,4 @@
-import { GenericError, JWT } from "../utils";
+import { Bcrypt, GenericError, JWT } from "../utils";
 import * as cryptoJs from "crypto-js";
 
 import UsersModel from "../database/models/user.model";
@@ -9,6 +9,7 @@ const userExists = "User already exists!";
 export default class RegisterService {
   private model = UsersModel;
   private jwt = new JWT();
+  private bCrypt = new Bcrypt();
 
   createNewUser = async (newUser: IUser) => {
     const { email } = newUser;
@@ -22,7 +23,7 @@ export default class RegisterService {
 
     const { password, ...userInfo } = newUser;
 
-    const hash = cryptoJs.MD5(password).toString();
+    const hash = await this.bCrypt.generatePassword(password);
 
     const token = this.jwt.generateToken(userInfo);
 

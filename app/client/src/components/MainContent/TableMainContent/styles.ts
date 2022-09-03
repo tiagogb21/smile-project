@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   width: 95vw;
-  height: 50vh;
+  height: 65vh;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 
   article {
@@ -32,15 +32,6 @@ export const Container = styled.section`
     cursor: pointer;
     border: 2px solid blue;
     color: blue;
-  }
-
-  @media screen and (min-width: 768px) {
-    justify-content: space-around;
-
-    .btn-arrow {
-      width: 50px;
-      height: 50px;
-    }
   }
 `;
 

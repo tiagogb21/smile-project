@@ -1,17 +1,17 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("schedule", {
+    await queryInterface.createTable("schedules", {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false,
       },
-      dueDate: {
+      createdBy: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      createdBy: {
+      client: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -23,17 +23,13 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      created: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      updated: {
-        type: Sequelize.DATE,
+      dueDate: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable("schedule");
+    await queryInterface.dropTable("schedules");
   },
 };
