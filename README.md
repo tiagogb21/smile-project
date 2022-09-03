@@ -14,6 +14,12 @@ React/Redux/Typescript/Styled-components/Storybook/Axios/Oauth(Google)
 <strong>Back</strong>:
 Node/MVC/ORM(Sequelize)/Jwt/Bcript
 
+## Testes:
+
+ Para esse projeto foram realizados testes tanto no front quanto no back.
+
+## Images:
+
 ![Login Mobile](./imgs/login-mobile.png) <br/>
 ![Login Desktop](./imgs/login-desktop.png) <br/>
 ![Cadastro Mobile](./imgs/register-mobile.png) <br/>
