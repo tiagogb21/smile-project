@@ -6,7 +6,7 @@ import chaiHttp = require("chai-http");
 
 import { app } from "../app";
 import model from "../database/models/user.model";
-import { registerInfo } from "./register.constant";
+import clientInfo from "./client.constant";
 
 chai.use(chaiHttp);
 
@@ -14,7 +14,7 @@ const { expect } = chai;
 
 const sandbox = require("sinon").createSandbox();
 
-describe("Teste de Cadastro (Register)", () => {
+describe("Teste de Cadastro (client)", () => {
   before(() => {
     sandbox.stub(model, "findOne");
   });
@@ -23,15 +23,19 @@ describe("Teste de Cadastro (Register)", () => {
     sandbox.restore();
   });
 
-  it("Quando, os dados estiverem corretos, a rota post /register deve retornar um token", async () => {
+  it("Quando, os dados estiverem corretos, a rota post /client deve retornar uma mensagem de sucesso", async () => {
     const response = await chai
       .request(app)
-      .post("/register")
+      .post("/client")
       .send({
-        name: registerInfo.username,
-        email: registerInfo.email,
-        password: registerInfo.password,
-        role: registerInfo.role,
+        clientName: clientInfo.clientName,
+        genre: clientInfo.genre,
+        birthday: clientInfo.birthday,
+        naturalness: clientInfo.naturalness,
+        profession: clientInfo.profession,
+        maritalStatus: clientInfo.maritalStatus,
+        cellphone: clientInfo.cellphone,
+        email: clientInfo.email,
       })
       .then((res) => {
         return res;
@@ -40,10 +44,10 @@ describe("Teste de Cadastro (Register)", () => {
     expect(response.body.newUser).to.have.property("token");
   });
 
-  it("Quando o username não tiver sido preenchido, a rota post /register deve retornar uma mensagem de erro", async () => {
+  it("Quando o username não tiver sido preenchido, a rota post /client deve retornar uma mensagem de erro", async () => {
     const response = await chai
       .request(app)
-      .post("/register")
+      .post("/client")
       .send({
         email: "fake@gmail.com",
         role: "client",
@@ -56,10 +60,10 @@ describe("Teste de Cadastro (Register)", () => {
     });
   });
 
-  it("Quando o email não tiver sido preenchido, a rota post /register deve retornar uma mensagem de erro", async () => {
+  it("Quando o email não tiver sido preenchido, a rota post /client deve retornar uma mensagem de erro", async () => {
     const response = await chai
       .request(app)
-      .post("/register")
+      .post("/client")
       .send({
         username: "fake",
         role: "client",
@@ -72,10 +76,10 @@ describe("Teste de Cadastro (Register)", () => {
     });
   });
 
-  it("Quando a senha não tiver sido preenchida, a rota post /register deve retornar uma mensagem de erro", async () => {
+  it("Quando a senha não tiver sido preenchida, a rota post /client deve retornar uma mensagem de erro", async () => {
     const response = await chai
       .request(app)
-      .post("/register")
+      .post("/client")
       .send({
         username: "fake",
         email: "fake@fake.com",

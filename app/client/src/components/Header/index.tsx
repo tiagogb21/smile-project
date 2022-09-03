@@ -37,7 +37,7 @@ const styles = {
       backgroundImage: `url(${Image})`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100% 100%',
-      height: '65vh',
+      height: '30vh',
       display: 'flex',
       alignItems: 'flex-start',
       paddingTop: '12px',
